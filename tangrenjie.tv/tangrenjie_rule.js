@@ -1,4 +1,5 @@
 
+https://www.tangrenjie.tv/vod/show/area/0/id/1/page/1/year/2021.html
 //首页频道信息
 https://www.tangrenjie.tv/vod/show/area/fyarea/id/fyclass/page/fypage/year/fyyear.html
 电影&电视剧&综艺&动漫&动作片&喜剧片&爱情片&科幻片&恐怖片&剧情片&战争片&国产剧&港台剧&日韩剧&欧美剧&海外剧&纪录片
@@ -80,3 +81,29 @@ if(!getVar('magedn$local')){
 //Search Rule
 https://www.tangrenjie.tv/vod/search.html?wd=**
 .vodlist&&li;.vodlist_title&&Text;a&&href;.vodlist_sub,2&&Text;;a&&data-original;
+
+
+
+
+
+/***************************************/
+var html = fetch(input, {});
+var playerHtml = parseDomForHtml(html, ".player_video&&Html");
+var script = playerHtml.match(/<script.*?>(.*?)<\\/script > /i)[1];eval(script);var script_links = playerHtml.match(/ < script[ ^ < > ] * ? src = "([^<>]*?)" / g);
+
+for (var i = 0; i < script_links.length; i++) {
+    var url_js = "https://www.tangrenjie.tv" + script_links[i].replace(/.*?src="/, "").replace(/"$/, "");
+    var trj_js = fetch(url_js, {});
+    trj_js = trj_js.replace(/window.onerror=null;window.onerror=killErrors;/m, "").replace(/MacPlayer.Init(.+?);/g, "");
+    eval(trj_js);
+}
+var play_url = unescape(base64decode(player_aaaa.url));
+if (getVar('magedn$local') == '0') {
+    putVar('fftq', play_url);
+    refreshPage();
+    'toast://切换选集成功！'
+} else {
+    play_url
+}
+/***************************************/
+
